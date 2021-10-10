@@ -1,7 +1,11 @@
-import { FC } from 'react'
+import Header from '@components/header';
+import { FC } from 'react';
 
 const Layout: FC = ({ children }) => (
-  <div>This layout is reusable. {children}</div>
-)
+  <div>
+    <Header />
+    {children}
+  </div>
+);
 
-export default Layout
+export default Layout;

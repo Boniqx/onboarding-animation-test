@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "lint2": "next lint",
+    "dnpmev": "next dev",
     "build": "next build",
     "start": "next start",
     "tsc-node": "tsc -p tsconfig.json",
-    "lint:js": "eslint src --ext .ts --ext .tsx --fix",
+    "lint:js": "eslint . --ext .ts --ext .tsx --fix",
     "lint": "npm run tsc-node && npm run lint:js",
     "check-updates": "ncu -u",
     "check-updates-minor": "ncu -u -t minor",
@@ -28,15 +29,22 @@
     ]
   },
   "dependencies": {
+    "@apollo/client": "^3.4.16",
+    "@chakra-ui/icons": "^1.0.15",
     "@chakra-ui/react": "^1.6.8",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
+    "@types/js-cookie": "^3.0.0",
+    "apollo-link-context": "^1.0.20",
     "framer-motion": "^4.1.17",
     "graphql": "^15.6.0",
     "graphql-tag": "^2.12.5",
+    "js-cookie": "^3.0.1",
     "next": "11.1.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-hook-form": "^7.17.1",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^2.2.0",
