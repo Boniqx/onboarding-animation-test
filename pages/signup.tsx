@@ -146,7 +146,15 @@ const MainModule: FC = () => {
                   <FormLabel fontWeight="500" mb="8px">
                     First Name
                   </FormLabel>
-                  <Input disabled={loading} {...register('firstname')} placeholder="Enter first name" size="sm" />
+                  <Input
+                    isInvalid={errors.hasOwnProperty('firstname')}
+                    focusBorderColor={errors.hasOwnProperty('firstname') ? 'crimson' : 'blue.400'}
+                    errorBorderColor="crimson"
+                    disabled={loading}
+                    {...register('firstname')}
+                    placeholder="Enter first name"
+                    size="sm"
+                  />
                   <Text color="tomato" fontSize="sm">
                     {errors.firstname?.message}
                   </Text>
@@ -156,7 +164,15 @@ const MainModule: FC = () => {
                   <FormLabel marginTop="20px" fontWeight="500" mb="8px">
                     Last Name
                   </FormLabel>
-                  <Input disabled={loading} {...register('lastname')} placeholder="Enter last name" size="sm" />
+                  <Input
+                    isInvalid={errors.hasOwnProperty('lastname')}
+                    focusBorderColor={errors.hasOwnProperty('lastname') ? 'crimson' : 'blue.400'}
+                    errorBorderColor="crimson"
+                    disabled={loading}
+                    {...register('lastname')}
+                    placeholder="Enter last name"
+                    size="sm"
+                  />
                   <Text color="tomato" fontSize="sm">
                     {errors.lastname?.message}
                   </Text>
@@ -167,6 +183,9 @@ const MainModule: FC = () => {
                     Email
                   </FormLabel>
                   <Input
+                    isInvalid={errors.hasOwnProperty('emailAddress')}
+                    focusBorderColor={errors.hasOwnProperty('emailAddress') ? 'crimson' : 'blue.400'}
+                    errorBorderColor="crimson"
                     disabled={loading}
                     {...register('emailAddress')}
                     type="email"
@@ -183,6 +202,9 @@ const MainModule: FC = () => {
                     Password
                   </FormLabel>
                   <Input
+                    isInvalid={errors.hasOwnProperty('password')}
+                    focusBorderColor={errors.hasOwnProperty('password') ? 'crimson' : 'blue.400'}
+                    errorBorderColor="crimson"
                     disabled={loading}
                     {...register('password')}
                     placeholder="Enter Password"
@@ -199,6 +221,9 @@ const MainModule: FC = () => {
                     Confirm Password
                   </FormLabel>
                   <Input
+                    isInvalid={errors.hasOwnProperty('confirmPassword')}
+                    focusBorderColor={errors.hasOwnProperty('confirmPassword') ? 'crimson' : 'blue.400'}
+                    errorBorderColor="crimson"
                     disabled={loading}
                     {...register('confirmPassword')}
                     placeholder="Confirm Password"
