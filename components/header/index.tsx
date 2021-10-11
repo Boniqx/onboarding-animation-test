@@ -2,7 +2,7 @@ import { HamburgerIcon } from '@chakra-ui/icons';
 import { Box, Button, Container, Flex, Spacer, Stack, Text, useDisclosure } from '@chakra-ui/react';
 import Link from 'next/link';
 import { FC } from 'react';
-import Logo from './logo';
+import Logo from '../../assets/icons/logo';
 const Header: FC = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleToggle = (): void => (isOpen ? onClose() : onOpen());
