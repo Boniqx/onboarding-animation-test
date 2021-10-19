@@ -85,6 +85,7 @@ const MainModule: FC = () => {
       </Head>
 
       <Box
+        width="100%"
         height="calc(100vh - 64px)"
         display="flex"
         align-items="center"

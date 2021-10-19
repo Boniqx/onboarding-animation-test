@@ -1,41 +1,35 @@
-import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
+import { ApolloProvider } from '@apollo/client';
 import { ChakraProvider } from '@chakra-ui/react';
+import Loading from '@components/Loading';
+import client from '@utils/client';
 import theme from '@utils/themes';
-import Cookies from 'js-cookie';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { FC } from 'react';
+import Router from 'next/router';
+import { FC, useEffect, useState } from 'react';
+const App: FC<AppProps> = ({ Component, pageProps }) => {
+  const [loading, SetLoading] = useState(false);
 
-const httpLink = createHttpLink({
-  uri: 'https://frontend-engineer-onboarding-api-thxaa.ondigitalocean.app/graphql',
-});
+  useEffect(() => {
+    Router.events.on('routeChangeStart', () => {
+      SetLoading(true);
+    });
 
-const authLink = setContext((_, { headers }) => {
-  const token = Cookies.get('token');
+    Router.events.on('routeChangeComplete', () => {
+      SetLoading(false);
+    });
+  }, []);
 
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-    },
-  };
-});
-
-const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-});
-
-const App: FC<AppProps> = ({ Component, pageProps }) => (
-  <ApolloProvider client={client}>
-    <ChakraProvider theme={theme}>
-      <Head>
-        <link rel="shortcut icon" href="/favicon.png" />
-      </Head>
-      <Component {...pageProps} />
-    </ChakraProvider>
-  </ApolloProvider>
-);
+  return (
+    <ApolloProvider client={client}>
+      <ChakraProvider theme={theme}>
+        <Head>
+          <link rel="shortcut icon" href="/favicon.png" />
+        </Head>
+        {loading ? <Loading /> : <Component {...pageProps} />}
+      </ChakraProvider>
+    </ApolloProvider>
+  );
+};
 
 export default App;

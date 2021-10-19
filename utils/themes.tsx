@@ -4,9 +4,17 @@ const theme = extendTheme({
   components: {
     Button: {
       variants: {
+        secondary: {
+          bg: 'gray.100',
+        },
         primary: {
           bg: 'purple.500',
           color: '#fff',
+        },
+        primaryAction: {
+          bg: 'purple.500',
+          color: '#fff',
+          padding: '10px 20.5px',
         },
       },
     },
