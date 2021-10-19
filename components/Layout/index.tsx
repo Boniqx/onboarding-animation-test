@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react';
 import Footer from '@components/Footer';
-import Header from '@components/Header';
+import Header from '@components/PageHeader';
 import { FC } from 'react';
 
 const Layout: FC = ({ children }) => (
