@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import Products from './product';
+import Products from './products';
 
 const Home: FC = () => {
   return <Products />;

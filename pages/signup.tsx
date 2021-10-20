@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client';
 import { Box, Button, Center, Container, FormControl, FormLabel, Heading, Input, Stack, Text } from '@chakra-ui/react';
-import Layout from '@components/Layout';
+import MainLayout from '@components/Layout/MainLayout';
 import { SIGN_UP } from 'graphql/mutations/signup';
 import Head from 'next/head';
 import Router from 'next/router';
@@ -93,7 +93,7 @@ const MainModule: FC = () => {
 
   return (
     <>
-      <Layout>
+      <MainLayout>
         <Head>
           <title>Sign Up</title>
         </Head>
@@ -110,7 +110,7 @@ const MainModule: FC = () => {
             };
             saveSignup(signUpData);
           })}
-          height="calc(100vh - 64px)"
+          height="calc(100vh - 128px)"
           display="flex"
           align-items="center"
           justify-content="center"
@@ -241,7 +241,7 @@ const MainModule: FC = () => {
             </Stack>
           </Container>
         </Box>
-      </Layout>
+      </MainLayout>
     </>
   );
 };

@@ -3,7 +3,7 @@ import Footer from '@components/Footer';
 import Header from '@components/Header';
 import { FC } from 'react';
 
-const Layout: FC = ({ children }) => (
+const MainLayout: FC = ({ children }) => (
   <Flex flexDirection="column" minHeight="100vh" alignItems="stretch">
     <Header />
     <Flex as="main" flexGrow={1} flexShrink={0}>
@@ -13,4 +13,4 @@ const Layout: FC = ({ children }) => (
   </Flex>
 );
 
-export default Layout;
+export default MainLayout;

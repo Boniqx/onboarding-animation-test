@@ -1,6 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import Breadcrumbs from '@components/Breadcrumbs';
-import Layout from '@components/Layout';
+import ContentLayout from '@components/Layout/ContentLayout';
+import MainLayout from '@components/Layout/MainLayout';
 import AddEditProduct from '@modules/AddEditProduct.tsx';
 import client from '@utils/client';
 import { PRODUCTS_IDS } from 'graphql/queries/productIds';
@@ -35,12 +36,14 @@ const Header: FC<SingleProduct> = (props: SingleProduct) => {
       <Head>
         <title>{product?.name}</title>
       </Head>
-      <Layout>
-        <Box w="100%" padding="90px 110px">
-          <Breadcrumbs dynamicLink={product?.name} />
-          <AddEditProduct isEdit={true} id={product?.id} name={product?.name} description={product?.description} />
-        </Box>
-      </Layout>
+      <MainLayout>
+        <ContentLayout>
+          <Box w="100%">
+            <Breadcrumbs dynamicLink={`/products/${product?.name}`} />
+            <AddEditProduct isEdit={true} id={product?.id} name={product?.name} description={product?.description} />
+          </Box>
+        </ContentLayout>
+      </MainLayout>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import { ApolloError, useMutation } from '@apollo/client';
 import { Box, Button, Center, Container, FormLabel, Heading, Input, Stack, Text } from '@chakra-ui/react';
-import Layout from '@components/Layout';
+import MainLayout from '@components/Layout/MainLayout';
 import client from '@utils/client';
 import { AUTHENTICATE } from 'graphql/mutations/authenticate';
 import { ME } from 'graphql/queries/me';
@@ -89,14 +89,14 @@ const MainModule: FC = () => {
   };
 
   return (
-    <Layout>
+    <MainLayout>
       <Head>
         <title>Login</title>
       </Head>
 
       <Box
         width="100%"
-        height="calc(100vh - 64px)"
+        height="calc(100vh - 128px)"
         display="flex"
         align-items="center"
         justify-content="center"
@@ -178,7 +178,7 @@ const MainModule: FC = () => {
           </Stack>
         </Container>
       </Box>
-    </Layout>
+    </MainLayout>
   );
 };
 

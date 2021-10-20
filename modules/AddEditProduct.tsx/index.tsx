@@ -205,7 +205,12 @@ const AddEditProduct: FC<AddEditProductTypes> = (props: AddEditProductTypes): JS
           </FormControl>
 
           <HStack width="100%" justifyContent="end" marginTop="50px !important">
-            <Button radius="md" padding="10px 50px" variant="secondary">
+            <Button
+              onClick={(): Promise<boolean> => Router.push('/')}
+              radius="md"
+              padding="10px 50px"
+              variant="secondary"
+            >
               Cancel
             </Button>
             <Button

@@ -1,5 +1,5 @@
 import AddToCartIcon from '@assets/icons/add-to-cart';
-import { Box, Button, Flex, Image, Menu, MenuButton, MenuItem, MenuList, Text } from '@chakra-ui/react';
+import { Box, Button, Image, Menu, MenuButton, MenuItem, MenuList, Text } from '@chakra-ui/react';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
 import { Dispatch, FC, SetStateAction } from 'react';
@@ -36,7 +36,7 @@ const ProductBox: FC<ProductBoxType> = (props: ProductBoxType) => {
             right="20px"
             aria-label="dotted-icon"
           >
-            <Image width="100%" borderRadius="0px" src="/images/Icon button.png" alt="placeholder" />
+            <Image maxWidth="100%" borderRadius="0px" src="/images/Icon button.png" alt="placeholder" />
           </MenuButton>
           <MenuList>
             <Link href={`/edit-product/${product.node.id}`}>
@@ -54,9 +54,10 @@ const ProductBox: FC<ProductBoxType> = (props: ProductBoxType) => {
         </Menu>
       )}
       <Image width="100%" borderRadius="0px" src="/images/Media placeholder.png" alt="placeholder" />
-      <Box p="6">
+
+      <Box p="20px">
         <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
-          <Link href={`/product/${product.node.id}`}>
+          <Link href={`/products/${product.node.id}`}>
             <Text
               fontSize="1.125em"
               _hover={{
@@ -70,16 +71,14 @@ const ProductBox: FC<ProductBoxType> = (props: ProductBoxType) => {
           </Link>
         </Box>
         <Text noOfLines={[2, 5]}> {product.node.description} </Text>
-      </Box>
 
-      <Flex justifyContent="center" width="100%">
-        <Button marginBottom="20px" width="250px" background="#FAF5FF">
+        <Button marginTop="18px" width="100%" maxWidth="250px" background="#FAF5FF">
           <AddToCartIcon />
           <Text marginLeft="0.6875em" color="purple.600">
             Add to cart
           </Text>
         </Button>
-      </Flex>
+      </Box>
     </Box>
   );
 };

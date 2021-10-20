@@ -23,7 +23,7 @@ const Breadcrumbs: FC<BreadcrumbsPropsType> = (props: BreadcrumbsPropsType): JSX
   };
 
   useEffect(() => {
-    const linkPath = router.asPath.split('/');
+    const linkPath = dynamicLink ? dynamicLink.split('/') : router.asPath.split('/');
     linkPath.shift();
 
     const pathArray = linkPath.map((path, i): breadcrumbsType => {
@@ -40,13 +40,11 @@ const Breadcrumbs: FC<BreadcrumbsPropsType> = (props: BreadcrumbsPropsType): JSX
   return (
     <Box w="100%" marginBottom="18px" aria-label="breadcrumbs">
       <Breadcrumb spacing="23px" separator={<ChevronRightIcon color="gray.500" />}>
-        {breadcrumbs.map((breadcrumb, i) => {
+        {breadcrumbs.map((breadcrumb) => {
           return (
             <BreadcrumbItem key={breadcrumb.href}>
               <Link href={breadcrumb.href}>
-                <BreadcrumbLink textTransform="capitalize">
-                  {breadcrumbs.length - 1 === i && dynamicLink ? dynamicLink : convertBreadcrumb(breadcrumb.breadcrumb)}
-                </BreadcrumbLink>
+                <BreadcrumbLink textTransform="capitalize">{convertBreadcrumb(breadcrumb.breadcrumb)}</BreadcrumbLink>
               </Link>
             </BreadcrumbItem>
           );

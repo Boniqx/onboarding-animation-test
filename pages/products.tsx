@@ -2,7 +2,8 @@ import { NetworkStatus, useQuery } from '@apollo/client';
 import { AddIcon } from '@chakra-ui/icons';
 import { Button, Grid, Heading, HStack, Spacer, Text, useDisclosure, VStack } from '@chakra-ui/react';
 import DeleteProduct from '@components/DeleteProduct';
-import Layout from '@components/Layout';
+import ContentLayout from '@components/Layout/ContentLayout';
+import MainLayout from '@components/Layout/MainLayout';
 import Pagination from '@modules/products/Pagination';
 import ProductBox from '@modules/products/ProductBox';
 import ProductSkeleton from '@modules/products/ProductSkeleton';
@@ -97,50 +98,57 @@ const Products: FC = () => {
   };
 
   return (
-    <Layout>
-      <Head>
-        <title>Products</title>
-      </Head>
+    <MainLayout>
+      <ContentLayout>
+        <Head>
+          <title>Products</title>
+        </Head>
 
-      <DeleteProduct id={toBeDeletedId} reloadFunction={reload} isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+        <DeleteProduct id={toBeDeletedId} reloadFunction={reload} isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
 
-      <VStack width="100%" padding="90px 110px">
-        <HStack
-          marginBottom="50px"
-          direction={{ base: 'column', md: 'row' }}
-          width="100%"
-          paddingBottom="9px"
-          borderBottom="solid 1px #E2E8F0"
-          flexGrow={1}
-          alignItems="baseline"
-          mt={{ base: 4, md: 0 }}
-        >
-          <Heading fontSize="1.875em"> Products </Heading>
-          <Spacer />
+        <VStack width="100%">
+          <HStack
+            marginBottom="50px"
+            direction={{ base: 'column', md: 'row' }}
+            width="100%"
+            paddingBottom="9px"
+            borderBottom="solid 1px #E2E8F0"
+            flexGrow={1}
+            alignItems="baseline"
+            mt={{ base: 4, md: 0 }}
+          >
+            <Heading fontSize="1.875em"> Products </Heading>
+            <Spacer />
 
-          {token && (
-            <Link href={`/products/add-product`}>
-              <Button variant="primaryAction">
-                <AddIcon />
-                <Text marginLeft="0.6875em" fontSize="1.125em">
-                  Add Product
-                </Text>
-              </Button>
-            </Link>
-          )}
-        </HStack>
+            {token && (
+              <Link href={`/products/add-product`}>
+                <Button variant="primaryAction">
+                  <AddIcon />
+                  <Text marginLeft="0.6875em" fontSize="1.125em">
+                    Add Product
+                  </Text>
+                </Button>
+              </Link>
+            )}
+          </HStack>
 
-        <Grid paddingBottom="40px" borderBottom="1px solid #E5E7EB" templateColumns="repeat(4, 1fr)" gap={6}>
-          {productsData.data.map((product, key) => (
-            <ProductBox product={product} setToBeDeletedId={setToBeDeletedId} onOpen={onOpen} key={key} />
-          ))}
-        </Grid>
+          <Grid
+            paddingBottom="40px"
+            borderBottom="1px solid #E5E7EB"
+            templateColumns={['repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(2, 1fr)', 'repeat(4, 1fr)']}
+            gap={6}
+          >
+            {productsData.data.map((product, key) => (
+              <ProductBox product={product} setToBeDeletedId={setToBeDeletedId} onOpen={onOpen} key={key} />
+            ))}
+          </Grid>
 
-        <HStack marginTop="0px !important" width="100%" justifyContent="space-between">
-          <Pagination page={page} getPrevPage={getPrevPage} getNextPage={getNextPage} productsData={productsData} />
-        </HStack>
-      </VStack>
-    </Layout>
+          <HStack marginTop="0px !important" width="100%" justifyContent="space-between">
+            <Pagination page={page} getPrevPage={getPrevPage} getNextPage={getNextPage} productsData={productsData} />
+          </HStack>
+        </VStack>
+      </ContentLayout>
+    </MainLayout>
   );
 };
 

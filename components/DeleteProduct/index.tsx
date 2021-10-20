@@ -27,7 +27,7 @@ const DeleteProduct: FC<DeleteProductProps> = (props: DeleteProductProps) => {
   const { isOpen, onClose, id } = props;
 
   const toast = useToast();
-  const [deleteProduct] = useMutation(DELETE_PRODUCT, {
+  const [deleteProduct, { loading }] = useMutation(DELETE_PRODUCT, {
     onCompleted: () => {
       onClose();
 
@@ -73,6 +73,7 @@ const DeleteProduct: FC<DeleteProductProps> = (props: DeleteProductProps) => {
                 bg: 'gray.300',
                 cursor: 'pointer',
               }}
+              isLoading={loading}
               color="#fff"
               background="red.500"
               onClick={(): Promise<void> => deleteProductFunction()}

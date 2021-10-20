@@ -2,7 +2,7 @@ import { createIcon, Icon } from '@chakra-ui/icons';
 import { FC } from 'react';
 
 const Logo: FC = () => (
-  <Icon viewBox="0 0 143 32" width={143} height={32}>
+  <Icon viewBox="0 0 143 32" width="143px" height="32px">
     <LogoIcon />
   </Icon>
 );
