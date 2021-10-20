@@ -8,6 +8,9 @@ export const SINGLE_PRODUCT = gql`
           id
           description
           name
+          owner {
+            id
+          }
         }
       }
     }

@@ -9,6 +9,9 @@ export const PRODUCTS = gql`
           id
           name
           description
+          owner {
+            id
+          }
         }
       }
       pageInfo {

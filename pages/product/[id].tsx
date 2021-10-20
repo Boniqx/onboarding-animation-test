@@ -20,6 +20,9 @@ interface SingleProduct {
         name: string;
         id: string;
         description: string;
+        owner: {
+          id: string;
+        };
       };
     };
   };
@@ -34,7 +37,7 @@ interface SingleProductIds {
 const Header: FC<SingleProduct> = (props: SingleProduct) => {
   const product = props.product.edges[0].node;
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const token = Cookies.get('token');
+  const userAuth = Cookies.get('auth_user');
 
   return (
     <>
@@ -68,7 +71,7 @@ const Header: FC<SingleProduct> = (props: SingleProduct) => {
             <VStack alignItems="baseline" width="100%">
               <HStack justifyContent="space-between" width="100%">
                 <Heading> {product?.name} </Heading>
-                {token && (
+                {userAuth === product.owner.id && (
                   <ButtonGroup>
                     <Link href={`/edit-product/${product.id}`}>
                       <Button>

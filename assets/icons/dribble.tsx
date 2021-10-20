@@ -2,7 +2,7 @@ import { createIcon, Icon } from '@chakra-ui/icons';
 import { FC } from 'react';
 
 const Dribble: FC = () => (
-  <Icon viewBox="0 0 20px 20px" width="20px" height="20px">
+  <Icon viewBox="0 0 20 20" width="20px" height="20px">
     <DribbleIcon />
   </Icon>
 );
@@ -11,7 +11,7 @@ export default Dribble;
 
 const DribbleIcon = createIcon({
   displayName: 'DribbleIcon',
-  viewBox: '0 0 20px 20px',
+  viewBox: '0 0 20 20',
   path: (
     <>
       <path

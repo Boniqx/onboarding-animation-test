@@ -21,6 +21,9 @@ interface PaginatedDataType {
       id: string;
       name: string;
       description: string;
+      owner: {
+        id: string;
+      };
     };
   }>;
 }

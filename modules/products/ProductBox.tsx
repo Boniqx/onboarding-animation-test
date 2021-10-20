@@ -11,6 +11,9 @@ interface ProductBoxType {
       id: string;
       name: string;
       description: string;
+      owner: {
+        id: string;
+      };
     };
   };
   setToBeDeletedId: Dispatch<SetStateAction<string>>;
@@ -18,12 +21,12 @@ interface ProductBoxType {
 }
 
 const ProductBox: FC<ProductBoxType> = (props: ProductBoxType) => {
-  const token = Cookies.get('token');
+  const userAuth = Cookies.get('auth_user');
   const { product, setToBeDeletedId, onOpen } = props;
 
   return (
     <Box maxW="sm" position="relative" background="white" borderWidth="1px" borderRadius="lg" overflow="hidden">
-      {token && (
+      {userAuth === product.node.owner.id && (
         <Menu>
           <MenuButton
             position="absolute"
