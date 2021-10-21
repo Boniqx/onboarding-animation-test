@@ -8,15 +8,8 @@ import { FC } from 'react';
 
 const Footer: FC = () => {
   return (
-    <Container display="flex" maxW="1280px" padding={0}>
-      <Flex
-        width="100%"
-        as="footer"
-        background="#fff"
-        padding="20px 30px"
-        justifyContent="space-between"
-        flexShrink={0}
-      >
+    <Flex width="100%" background="#fff" as="footer" flexShrink={0}>
+      <Container padding="20px 30px" justifyContent="space-between" display="flex" maxW="1280px">
         <Text fontWeight="400" color="gray.400">
           © {new Date().getFullYear()} HOV Onboarding. All rights reserved.{' '}
         </Text>
@@ -38,8 +31,8 @@ const Footer: FC = () => {
             <Dribble />
           </a>
         </HStack>
-      </Flex>
-    </Container>
+      </Container>
+    </Flex>
   );
 };
 
