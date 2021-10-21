@@ -70,7 +70,11 @@ const AddEditProduct: FC<AddEditProductTypes> = (props: AddEditProductTypes): JS
   });
 
   const resolver = useYupValidationResolver(validationSchema);
-  const { register, handleSubmit } = useForm<CreateProductInput>({
+  const {
+    formState: { errors },
+    register,
+    handleSubmit,
+  } = useForm<CreateProductInput>({
     resolver,
     defaultValues: {
       name: props.name ? props.name : '',
@@ -193,6 +197,9 @@ const AddEditProduct: FC<AddEditProductTypes> = (props: AddEditProductTypes): JS
           <FormControl id="name">
             <FormLabel fontWeight="500"> Title </FormLabel>
             <Input disabled={createLoading || updateLoading} {...register('name')} placeholder="Enter title" />
+            <Text color="tomato" fontSize="sm">
+              {errors.name?.message}
+            </Text>
           </FormControl>
 
           <FormControl id="description">
@@ -202,6 +209,9 @@ const AddEditProduct: FC<AddEditProductTypes> = (props: AddEditProductTypes): JS
               {...register('description')}
               placeholder="Enter description"
             />
+            <Text color="tomato" fontSize="sm">
+              {errors.description?.message}
+            </Text>
           </FormControl>
 
           <HStack width="100%" justifyContent="end" marginTop="50px !important">
