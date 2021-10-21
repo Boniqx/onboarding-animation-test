@@ -70,7 +70,7 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
 
   return {
     paths: paths,
-    fallback: false,
+    fallback: 'blocking',
   };
 }
 
@@ -88,5 +88,6 @@ export async function getStaticProps(props: SingleProductIds): Promise<GetStatic
     props: {
       product,
     },
+    revalidate: 60,
   };
 }
