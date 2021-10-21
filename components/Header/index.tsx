@@ -28,7 +28,7 @@ const Header: FC = (props) => {
       bg="#FFF"
       {...props}
     >
-      <Container height="100%" position="static" display="flex" maxW="1220px" padding={0}>
+      <Container height="100%" position="static" display="flex" maxW="1280px" padding="0px 30px">
         <Flex align="center" mr={5}>
           <Link href={`/`}>
             <IconButton height="auto" variant="unstyled" aria-label="logo-icon">

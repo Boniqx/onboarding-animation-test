@@ -8,8 +8,15 @@ import { FC } from 'react';
 
 const Footer: FC = () => {
   return (
-    <Container display="flex" maxW="1220px" padding={0}>
-      <Flex width="100%" as="footer" background="#fff" padding="20px 0px" justifyContent="space-between" flexShrink={0}>
+    <Container display="flex" maxW="1280px" padding={0}>
+      <Flex
+        width="100%"
+        as="footer"
+        background="#fff"
+        padding="20px 30px"
+        justifyContent="space-between"
+        flexShrink={0}
+      >
         <Text fontWeight="400" color="gray.400">
           © {new Date().getFullYear()} HOV Onboarding. All rights reserved.{' '}
         </Text>
