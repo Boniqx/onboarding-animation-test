@@ -7,11 +7,12 @@ import MainLayout from '@components/Layout/MainLayout';
 import Pagination from '@modules/products/Pagination';
 import ProductBox from '@modules/products/ProductBox';
 import ProductSkeleton from '@modules/products/ProductSkeleton';
+import client from '@utils/client';
 import { PRODUCTS } from 'graphql/queries/products';
 import Cookies from 'js-cookie';
 import Head from 'next/head';
 import Link from 'next/link';
-import { FC, useCallback, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 interface PaginatedDataType {
   cursor: string;
   hasNextPage: boolean;
@@ -42,6 +43,12 @@ const Products: FC = () => {
       paginatedData(data);
     },
   });
+
+  useEffect(() => {
+    return (): void => {
+      client.resetStore();
+    };
+  }, []);
 
   const paginatedData = useCallback(
     (data): void => {

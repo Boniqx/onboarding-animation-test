@@ -8,7 +8,7 @@ import { PRODUCTS_IDS } from 'graphql/queries/productIds';
 import { SINGLE_PRODUCT } from 'graphql/queries/singleProduct';
 import { GetStaticPathsResult, GetStaticPropsResult } from 'next';
 import Head from 'next/head';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 
 interface SingleProduct {
   product: {
@@ -30,6 +30,12 @@ interface SingleProductIds {
 
 const Header: FC<SingleProduct> = (props: SingleProduct) => {
   const product = props.product.edges[0].node;
+
+  useEffect(() => {
+    return (): void => {
+      client.resetStore();
+    };
+  }, []);
 
   return (
     <>

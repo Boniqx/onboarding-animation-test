@@ -12,7 +12,7 @@ import Cookies from 'js-cookie';
 import { GetStaticPathsResult, GetStaticPropsResult } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 
 interface SingleProduct {
   product: {
@@ -40,6 +40,12 @@ const Header: FC<SingleProduct> = (props: SingleProduct) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const userAuth = Cookies.get('auth_user');
 
+  useEffect(() => {
+    return (): void => {
+      client.resetStore();
+    };
+  }, []);
+
   return (
     <>
       <Head>
@@ -48,9 +54,8 @@ const Header: FC<SingleProduct> = (props: SingleProduct) => {
       <MainLayout>
         <ContentLayout>
           <DeleteProduct id={product.id} isOpen={isOpen} onOpen={onOpen} onClose={onClose} shouldReturnHome={true} />
-          <Breadcrumbs />
           <Box w="100%">
-            <Breadcrumbs dynamicLink={product?.name} />
+            <Breadcrumbs dynamicLink={`/products/${product?.name}`} />
             <HStack alignItems="flex-start" align="baseline" w="100%" borderRadius="md" padding="30px">
               <Box id="image" width="auto" marginRight="20px">
                 <Flex
