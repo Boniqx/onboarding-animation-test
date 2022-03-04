@@ -1,7 +1,9 @@
 import { ApolloError, useMutation } from '@apollo/client';
 import { Box, Button, Center, Container, FormLabel, Heading, Input, Stack, Text } from '@chakra-ui/react';
-import Layout from '@components/Layout';
+import MainLayout from '@components/Layout/MainLayout';
+import client from '@utils/client';
 import { AUTHENTICATE } from 'graphql/mutations/authenticate';
+import { ME } from 'graphql/queries/me';
 import Cookies from 'js-cookie';
 import Head from 'next/head';
 import Router from 'next/router';
@@ -24,7 +26,15 @@ const MainModule: FC = () => {
   if (data && !error) {
     Cookies.set('token', data.authenticate.token);
 
-    Router.push('/');
+    client
+      .query({
+        query: ME,
+        fetchPolicy: 'no-cache',
+      })
+      .then((data) => {
+        Cookies.set('auth_user', data.data.me.id);
+        Router.push('/');
+      });
   }
 
   const useYupValidationResolver = (validationSchema): any =>
@@ -79,13 +89,14 @@ const MainModule: FC = () => {
   };
 
   return (
-    <Layout>
+    <MainLayout>
       <Head>
         <title>Login</title>
       </Head>
 
       <Box
-        height="calc(100vh - 64px)"
+        width="100%"
+        height="calc(100vh - 128px)"
         display="flex"
         align-items="center"
         justify-content="center"
@@ -167,7 +178,7 @@ const MainModule: FC = () => {
           </Stack>
         </Container>
       </Box>
-    </Layout>
+    </MainLayout>
   );
 };
 
