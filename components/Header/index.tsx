@@ -1,15 +1,9 @@
-import { HamburgerIcon } from '@chakra-ui/icons';
-import { Box, Button, Container, Flex, IconButton, Image, Spacer, Stack, useDisclosure } from '@chakra-ui/react';
-import Cookies from 'js-cookie';
+import { Button, Container, Flex, HStack, IconButton, Image } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
-import Logo from '../../assets/icons/logo';
 
 const Header: FC = (props) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const handleToggle = (): void => (isOpen ? onClose() : onOpen());
-  const token = Cookies.get('token');
   const router = useRouter();
 
   return (
@@ -29,57 +23,50 @@ const Header: FC = (props) => {
       {...props}
     >
       <Container height="100%" position="static" display="flex" maxW="1280px" padding="0px 30px">
-        <Flex align="center" mr={5}>
-          <Link href={`/`}>
-            <IconButton height="auto" variant="unstyled" aria-label="logo-icon">
-              <Logo />
-            </IconButton>
-          </Link>
-        </Flex>
-
-        <Box display={{ base: 'block', md: 'none' }} onClick={handleToggle}>
-          <HamburgerIcon />
-        </Box>
-
-        <Stack
-          direction={{ base: 'column', md: 'row' }}
-          display={{ base: isOpen ? 'flex' : 'none', md: 'flex' }}
-          width={{ base: 'full', md: 'auto' }}
-          alignItems="center"
-          flexGrow={1}
-          mt={{ base: 4, md: 0 }}
-        >
-          <Button
-            height="100%"
-            variant="unstyled"
-            borderBottom={router.pathname == '/' || router.pathname.includes('product') ? '2px solid #6366F1' : ''}
-            borderRadius="0"
-          >
-            <Link href={`/`}>Products</Link>
-          </Button>
-          <Spacer />
-          <Flex verticalAlign="center" align="center" display={{ base: isOpen ? 'flex' : 'none', md: 'flex' }}>
-            {token ? (
-              <>
-                <Image src="/images/bell.png" height="18px" width="16px" marginRight="1.5em" />
-
-                <Image src="/images/profile.png" height="auto" width="32px" />
-              </>
-            ) : (
-              <>
-                <Link href={`/login`}>
-                  <Button variant="outline" mr={5}>
-                    Log in
-                  </Button>
-                </Link>
-
-                <Link href={`/signup`}>
-                  <Button variant="primary">Sign up</Button>
-                </Link>
-              </>
-            )}
+        <HStack justifyContent="space-between" w="full">
+          <Flex align="center" mr={5}>
+            <Link href={`/`}>
+              <IconButton height="auto" variant="unstyled" aria-label="logo-icon">
+                <Image src="/logo.png" />
+              </IconButton>
+            </Link>
           </Flex>
-        </Stack>
+
+          <HStack spacing={4}>
+            <Button
+              height="100%"
+              variant="unstyled"
+              borderBottom={router.pathname.includes('framer-basic') ? '2px solid #080a6b' : ''}
+              borderRadius="0"
+            >
+              <Link href={`/`}>Home</Link>
+            </Button>
+            <Button
+              height="100%"
+              variant="unstyled"
+              borderBottom={router.pathname.includes('framer-basic') ? '2px solid #080a6b' : ''}
+              borderRadius="0"
+            >
+              <Link href={`/`}>Ventures</Link>
+            </Button>
+            <Button
+              height="100%"
+              variant="unstyled"
+              borderBottom={router.pathname.includes('framer-basic') ? '2px solid #080a6b' : ''}
+              borderRadius="0"
+            >
+              <Link href={`/`}>About Us</Link>
+            </Button>
+            <Button
+              height="100%"
+              variant="unstyled"
+              borderBottom={router.pathname.includes('framer-basic') ? '2px solid #080a6b' : ''}
+              borderRadius="0"
+            >
+              <Link href={`/`}>Careers</Link>
+            </Button>
+          </HStack>
+        </HStack>
       </Container>
     </Flex>
   );
